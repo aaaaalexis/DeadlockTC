@@ -83,13 +83,6 @@ def process_file(file_path):
     if file_path.endswith("_schinese.txt"):
         output_path = file_path.replace("_schinese.txt", "_tchinese.txt")
         
-        if os.path.exists(output_path):
-            with open(output_path, 'r', encoding='utf-8') as f:
-                existing_text = f.read()
-                if len(existing_text) > 10000:
-                    print(f"已轉換：{output_path.replace(ROOT_FOLDER, '')}")
-                    return
-
         with open(file_path, 'r', encoding='utf-8') as f:
             simplified_text = f.read()
 

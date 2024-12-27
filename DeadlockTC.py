@@ -4,14 +4,21 @@ import json
 import re
 import fileinput
 import sys
+import winreg
 
 # Deadlock（生死僵局）正體中文轉換工具 v1.0
 # 遊戲每次更新都要重新跑一次
 # 沒特別做除錯 應該也不太會有問題
 
+def get_steam_path():
+    try:
+        with winreg.OpenKey(winreg.HKEY_LOCAL_MACHINE, r"SOFTWARE\WOW6432Node\Valve\Steam") as key:
+            return winreg.QueryValueEx(key, "InstallPath")[0]
+    except FileNotFoundError:
+        return None
+
 API_URL = "https://api.zhconvert.org/convert"
-ROOT_FOLDER = r"F:\Program Files (x86)\Steam\steamapps\common\Deadlock\game\citadel" # 確認路徑為 "citadel"
-CONVERTER = "Taiwan" # 轉換模式
+ROOT_FOLDER = os.path.join(get_steam_path() or "", r"steamapps\common\Deadlock\game\citadel")
 CUSTOM_MODULES = {"Smooth": 1, "EllipsisMark": 1, "Unit": 1, "ProperNoun": 1, "GanToZuo": 1, "QuotationMark": 1, "TengTong": 1, "InternetSlang": 1, "Repeat": 1, "RepeatAutoFix": 1, "Typo": 1, "Computer": 1}
 CUSTOM_WORD_LIST = { # 自訂替換詞彙
     "schinese": "tchinese",

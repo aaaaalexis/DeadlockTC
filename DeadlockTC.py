@@ -70,7 +70,7 @@ CUSTOM_WORD_LIST = { # 自訂替換詞彙
 def convert_text(text):
     payload = {
         'text': text,
-        'converter': CONVERTER,
+        'converter': "Taiwan",
         'modules': json.dumps(CUSTOM_MODULES),
     }
     try:
@@ -93,7 +93,7 @@ def process_file(file_path):
         with open(file_path, 'r', encoding='utf-8') as f:
             simplified_text = f.read()
 
-        print(f"轉換中：{file_path.replace(ROOT_FOLDER, '')}（{len(simplified_text)} 個字元）")
+        print(f"轉換中：{file_path.replace(ROOT_FOLDER, '')}（{len(simplified_text)} 個字元）... ", end="", flush=True)
 
         if traditional_text := convert_text(simplified_text):
             for old_word, new_word in CUSTOM_WORD_LIST.items():
@@ -103,9 +103,9 @@ def process_file(file_path):
             traditional_text = lang_formatting(traditional_text)
             with open(output_path, 'w', encoding='utf-8') as f:
                 f.write(traditional_text)
-            print(f"轉換成功。（繁化姬 / https://zhconvert.org/）")
+            print(f"轉換成功。")
         else:
-            print(f"轉換失敗。（繁化姬 / https://zhconvert.org/）")
+            print(f"轉換失敗。")
 
 def search_and_convert(root_folder):
     for root, _, files in os.walk(root_folder):
@@ -121,7 +121,7 @@ def download_fonts(urls, download_path):
         if os.path.exists(filename):
             print(f"已下載字型：{filename.replace(ROOT_FOLDER, '')}，略過...")
         else:
-            print(f"下載中：{filename.replace(ROOT_FOLDER, '')}")
+            print(f"下載中：{filename.replace(ROOT_FOLDER, '')}... ", end="", flush=True)
             response = requests.get(url)
             if response.status_code == 200:
                 with open(filename, 'wb') as f:
@@ -151,7 +151,7 @@ def update_fonts_config(fonts_conf_path, fontpattern_content, serif_content, san
         elif "<!-- SANS - Radiance -->" in line:
             if sans_content.strip() not in file_content:
                 print(sans_content)
-                print("設定字型：無襯線體...（", file=sys.stderr)
+                print("設定字型：無襯線體...", file=sys.stderr)
             else:
                 print("已設定無襯線體，略過...", file=sys.stderr)
 

@@ -155,11 +155,6 @@ def update_fonts_config(fonts_conf_path, fontpattern_content, serif_content, san
             else:
                 print("已設定無襯線體，略過...", file=sys.stderr)
 
-def update_game_language(root_folder):
-    print("設定遊戲語言...")
-    for line in fileinput.input(os.path.join(root_folder, "cfg", "boot.vcfg"), inplace=True):
-        print(line.replace('english', 'tchinese'), end='')
-
 FONTS_URL = [
     "https://github.com/max32002/swei-bell-sans/raw/refs/heads/master/CJK%20TC/SweiBellSansCJKtc-Light.ttf",
     "https://github.com/max32002/swei-bell-sans/raw/refs/heads/master/CJK%20TC/SweiBellSansCJKtc-Regular.ttf",
@@ -220,5 +215,4 @@ if __name__ == "__main__":
     print(f"# 套用字型設定")
     update_fonts_config(FONTS_CONF_PATH, fontpattern_content, serif_content, sans_content)
     print()
-    print(f"# 套用語言設定")
-    update_game_language(ROOT_FOLDER)
+    input('Deadlock 語言設定完成。請按下 Enter 退出...')

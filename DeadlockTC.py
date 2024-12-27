@@ -6,7 +6,7 @@ import fileinput
 import sys
 import winreg
 
-# Deadlock（生死僵局）正體中文轉換工具 v1.0
+# Deadlock（生死僵局）台灣正體中文轉換工具 v1.1
 # 遊戲每次更新都要重新跑一次
 # 沒特別做除錯 應該也不太會有問題
 
@@ -23,9 +23,9 @@ CUSTOM_MODULES = {"Smooth": 1, "EllipsisMark": 1, "Unit": 1, "ProperNoun": 1, "G
 CUSTOM_WORD_LIST = { # 自訂替換詞彙
     "schinese": "tchinese",
     "守望者": "Warden",
+    "Warden的盟友": "守望者的盟友",
     "大和": "Yamato",
     "熾焱": "Infernus",
-    "測試英雄": "Test Hero",
     "老七": "Seven",
     "復仇女巫": "Vindicta",
     "灰爪": "Grey Talon",
@@ -34,10 +34,12 @@ CUSTOM_WORD_LIST = { # 自訂替換詞彙
     "靈魅": "Wraith",
     "麥金尼斯": "McGinnis",
     "悖論": "Paradox",
+    "奇能教授": "Dynamo",
     "奇能博士": "Dynamo",
     "凱爾文": "Kelvin",
     "魔液": "Viscous",
     "暗影": "Haze",
+    "Haze變身術": "暗影變身術",
     "哈雷黛": "Holliday",
     "比波普": "Bebop",
     "卡厲可": "Calico",
@@ -48,23 +50,26 @@ CUSTOM_WORD_LIST = { # 自訂替換詞彙
     "神鞭": "Lash",
     "阿金駁": "Akimbo",
     "無名氏": "Generic Person",
-    "口袋": "Pocket",
+    "提箱客": "Pocket",
     "蜃景": "Mirage",
     "假人靶子": "TargetDummy",
+    "海魘": "Fathom",
+    "蝰邪": "Viper",
+    "網羅鬼匠": "Trapper",
+    "魔術師": "Magician",
+    "瑞文": "Raven",
     "禁用": "停用",
     "獲取": "取得",
     "詳情": "詳細資訊",
     "連接": "連線",
     "添加": "增加",
-    "紅色貨櫃": "紅色",
-    "相關": "情境",
     "應用": "套用",
     "進去": "進攻",
     "訊號": "標記",
     "匹配": "配對",
     "流線型": "常駐啟用",
     "雙擊": "按兩下",
-    "重啟": "重新啟動",
+    "重啟": "重新啟動"
 }
 
 def convert_text(text):
@@ -200,7 +205,7 @@ sans_content = """	<match>
 FONTS_CONF_PATH = os.path.join(ROOT_FOLDER, "panorama", "fonts", "fonts.conf")
 
 if __name__ == "__main__":
-    print(f"Deadlock 正體中文轉換工具 v1.0")
+    print(f"Deadlock 正體中文轉換工具 v1.1")
     print(f"遊戲路徑：{ROOT_FOLDER}")
     print()
     print(f"# 轉換遊戲文本")

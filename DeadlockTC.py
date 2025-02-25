@@ -6,7 +6,7 @@ import fileinput
 import sys
 import winreg
 
-# Deadlock（生死僵局）台灣正體中文轉換工具 v1.1
+# Deadlock（生死僵局）台灣正體中文轉換工具 v1.2
 # 遊戲每次更新都要重新跑一次
 # 沒特別做除錯 應該也不太會有問題
 
@@ -56,7 +56,7 @@ CUSTOM_WORD_LIST = { # 自訂替換詞彙
     "海魘": "Fathom",
     "蝰邪": "Viper",
     "網羅鬼匠": "Trapper",
-    "魔術師": "Magician",
+    "辛克萊": "Magician",
     "瑞文": "Raven",
     "禁用": "停用",
     "獲取": "取得",
